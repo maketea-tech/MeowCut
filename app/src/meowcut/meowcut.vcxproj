@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9EA2A3DE-B98F-486A-A04B-866F8F7FAC3E}</ProjectGuid>
     <Keyword>QtVS_v303</Keyword>
-    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">10.0.17763.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.17763.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">10.0.17763.0</WindowsTargetPlatformVersion>
@@ -30,22 +30,22 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -88,7 +88,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)app\include;$(SolutionDir)core\include;$(Qt_INCLUDEPATH_)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)app\include;$(SolutionDir)core\include;$(Qt_INCLUDEPATH_);.\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(Configuration)_$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -96,7 +96,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)app\include;$(SolutionDir)core\include;$(Qt_INCLUDEPATH_)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)app\include;$(SolutionDir)core\include;$(Qt_INCLUDEPATH_);.\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(Configuration)_$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -104,7 +104,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)app\include;$(SolutionDir)core\include;$(Qt_INCLUDEPATH_)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)app\include;$(SolutionDir)core\include;$(Qt_INCLUDEPATH_);.\</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(Configuration)_$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -112,7 +113,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)app\include;$(SolutionDir)core\include;$(Qt_INCLUDEPATH_)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)app\include;$(SolutionDir)core\include;$(Qt_INCLUDEPATH_);.\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(Configuration)_$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -194,11 +195,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MeowGLWidget.cpp" />
     <QtRcc Include="meowcut.qrc" />
     <QtUic Include="meowcut.ui" />
     <QtMoc Include="meowcut.h" />
     <ClCompile Include="meowcut.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="MeowGLWidget.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="MeowGLWidget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
