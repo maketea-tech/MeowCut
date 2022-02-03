@@ -1,21 +1,20 @@
 #include "meowcut.h"
 
-//load MeowCutCore lib
-#ifdef Q_CC_MSVC
-#ifdef QT_DEBUG
-#pragma comment(lib,"MeowCutCored.lib")
-#else
-#pragma comment(lib,"MeowCutCore.lib")
-#endif // QT_DEBUG
-#endif
-
 MeowCut::MeowCut(QWidget *parent)
     : QMainWindow(parent)
+    , ui(new Ui::MeowCut)
 {
-    ui.setupUi(this);
+    ui->setupUi(this);
 }
 
 void MeowCut::on_pushButton_clicked()
 {
-	meowCutCore.test();
+#ifdef DEBUG
+    meowCutCore.test();
+#endif // !DEBUG
+}
+
+MeowCut::~MeowCut()
+{
+    delete ui;
 }
