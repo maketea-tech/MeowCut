@@ -2,28 +2,31 @@
 #include "ui_MeowGLWidget.h"
 
 #include <QOpenGLShaderProgram>
+
+#ifdef DEBUG
 #include <QDebug>
+#endif  // !DEBUG
 
 /**
 * refrence: https://cloud.tencent.com/developer/article/1705815
 */
 
 MeowGLWidget::MeowGLWidget(QWidget *parent)
-	: QOpenGLWidget(parent)
+    : QOpenGLWidget(parent)
 {
-	ui = new Ui::MeowGLWidget();
-	ui->setupUi(this);
+    ui = new Ui::MeowGLWidget();
+    ui->setupUi(this);
 }
 
 MeowGLWidget::~MeowGLWidget()
 {
-	delete ui;
+    delete ui;
 }
 
 void MeowGLWidget::initializeGL() {
-	initializeOpenGLFunctions();
+    initializeOpenGLFunctions();
 
-    // ´´½¨¶¥µã×ÅÉ«Æ÷
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½
     QOpenGLShader* vshader = new QOpenGLShader(QOpenGLShader::Vertex, this);
     const char* vsrc =
         "in vec4 vPosition;                        \n"
@@ -32,7 +35,7 @@ void MeowGLWidget::initializeGL() {
         "}                                         \n";
     vshader->compileSourceCode(vsrc);
 
-    // ´´½¨Æ¬¶Î×ÅÉ«Æ÷
+    // ï¿½ï¿½ï¿½ï¿½Æ¬ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½
     QOpenGLShader* fshader = new QOpenGLShader(QOpenGLShader::Fragment, this);
     const char* fsrc =
         "void main() {                              \n"
@@ -40,7 +43,7 @@ void MeowGLWidget::initializeGL() {
         "}                                          \n";
     fshader->compileSourceCode(fsrc);
 
-    // ´´½¨×ÅÉ«Æ÷³ÌÐò
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     program = new QOpenGLShaderProgram;
     program->addShader(vshader);
     program->addShader(fshader);
@@ -48,7 +51,7 @@ void MeowGLWidget::initializeGL() {
     program->link();
     program->bind();
 
-    // ¶¥µãÎ»ÖÃ
+    // ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
     GLfloat vertices[] = {
         -0.8f, 0.8f, 0.0f,
         -0.8f, -0.8f, 0.0f,
@@ -66,18 +69,20 @@ void MeowGLWidget::initializeGL() {
 
     GLuint vPosition = program->attributeLocation("vPosition");
     
-    //Îª×ÅÉ«Æ÷ÖÐµÄÎ»ÖÃÉè¶¨¶¥µã»º´æ
+    //Îªï¿½ï¿½É«ï¿½ï¿½ï¿½Ðµï¿½Î»ï¿½ï¿½ï¿½è¶¨ï¿½ï¿½ï¿½ã»ºï¿½ï¿½
     program->setAttributeBuffer(vPosition, GL_FLOAT, 0, 3, 0);
-    program->enableAttributeArray(vPosition); //Ê¹ÄÜ¶¥µãÊôÐÔ
+    program->enableAttributeArray(vPosition); //Ê¹ï¿½Ü¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    //6.½â°óËùÓÐ¶ÔÏó
+    //6.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½
     vao.release();
     vbo.release();
     program->release();
 }
 
 void MeowGLWidget::paintGL() {
+#ifdef DEBUG
     qDebug() << "This is paintGL.";
+#endif  // !DEBUG
 
     int w = width();
     int h = height();
@@ -88,13 +93,13 @@ void MeowGLWidget::paintGL() {
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    // äÖÈ¾Shader
-    program->bind(); //°ó¶¨¼¤»îProgram¶ÔÏó
-    vao.bind();      //°ó¶¨¼¤»îvao
-    glDrawArrays(GL_TRIANGLES, 0, 3);    //»æÖÆ3¸ö¶¨µã,ÑùÊ½ÎªÈý½ÇÐÎ
-    vao.release();       //½â°ó
-    program->release();  //½â°ó
-    update(); // ÔÙ´Î´¥·¢paintGLµÄµ÷ÓÃ
+    // ï¿½ï¿½È¾Shader
+    program->bind(); //ï¿½ó¶¨¼ï¿½ï¿½ï¿½Programï¿½ï¿½ï¿½ï¿½
+    vao.bind();      //ï¿½ó¶¨¼ï¿½ï¿½ï¿½vao
+    glDrawArrays(GL_TRIANGLES, 0, 3);    //ï¿½ï¿½ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Ê½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    vao.release();       //ï¿½ï¿½ï¿½
+    program->release();  //ï¿½ï¿½ï¿½
+    update(); // ï¿½Ù´Î´ï¿½ï¿½ï¿½paintGLï¿½Äµï¿½ï¿½ï¿½
 }
 
 void MeowGLWidget::resizeGL(int width, int height) {

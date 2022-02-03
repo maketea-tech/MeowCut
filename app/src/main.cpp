@@ -1,4 +1,4 @@
-#include "meowcut.h"
+#include "meowcut/meowcut.h"
 #include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
