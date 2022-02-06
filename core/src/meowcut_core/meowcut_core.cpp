@@ -1,4 +1,4 @@
-#include "meowcutcore.h"
+#include "meowcut_core.h"
 #ifdef DEBUG
 #include <QDebug>
 #endif	// !DEBUG

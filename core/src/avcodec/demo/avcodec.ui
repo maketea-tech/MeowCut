@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AVCodecWidgetClass</class>
- <widget class="QMainWindow" name="AVCodecWidgetClass">
+ <class>AVCodecDemo</class>
+ <widget class="QMainWindow" name="AVCodecDemo">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>AVCodecWidget</string>
+   <string>AVCodecDemo</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -62,7 +62,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="avcodecwidget.qrc"/>
+  <include location="avcodec.qrc"/>
  </resources>
  <connections/>
 </ui>
