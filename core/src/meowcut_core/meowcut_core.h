@@ -1,5 +1,5 @@
-#ifndef __CORE_MEOWCUTCORE_H__
-#define __CORE_MEOWCUTCORE_H__
+#ifndef __CORE_MEOWCUT_CORE_H__
+#define __CORE_MEOWCUT_CORE_H__
 
 #include "avcodec/avcodec.h"
 
@@ -16,4 +16,4 @@ private:
 	AVCodec avcodec;
 };
 
-#endif  // !__CORE_MEOWCUTCORE_H__
+#endif  // !__CORE_MEOWCUT_CORE_H__

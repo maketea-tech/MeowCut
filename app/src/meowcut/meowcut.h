@@ -1,7 +1,7 @@
 #ifndef __APP_MEOWCUT_H__
 #define __APP_MEOWCUT_H__
 
-#include "meowcutcore/meowcutcore.h"
+#include "meowcut_core/meowcut_core.h"
 
 #include <QtWidgets/QMainWindow>
 #include "ui_meowcut.h"
