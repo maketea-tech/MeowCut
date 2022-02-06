@@ -13,16 +13,15 @@ struct MeowEffectLayerGroup {
      *
      * @return MeowEffectLayer*
      */
-    MeowEffectLayer* AddEffectLayer(MeowTracingContext*);
+    MeowEffectLayer* AddEffectLayer();
 
     /**
      * @brief 删除特效图层
      *
      * @param layer
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool DelEffectLayer(MeowTracingContext*, MeowEffectLayer* layer);
+    MeowStatusCode DelEffectLayer(MeowEffectLayer* layer);
 
     struct MeowEffectLayerGroupImpl;
     MeowEffectLayerGroupImpl* impl;

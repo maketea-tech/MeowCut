@@ -13,16 +13,15 @@ struct MeowAudioLayerGroup {
      *
      * @return MeowAudioLayer*
      */
-    MeowAudioLayer* AddAudioLayer(MeowTracingContext*);
+    MeowAudioLayer* AddAudioLayer();
 
     /**
      * @brief 删除音频层，删除layer时，需要先获取layer中所有binded clip，逐个删除
      *
      * @param layer
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool DelAudioLayer(MeowTracingContext*, MeowAudioLayer* layer);
+    MeowStatusCode DelAudioLayer(MeowAudioLayer* layer);
 
     struct MeowAudioLayerGroupImpl;
     MeowAudioLayerGroupImpl* impl;

@@ -21,7 +21,7 @@ struct MeowEditorLayer {
      * @param video_path
      * @return MeowVideoClip*
      */
-    MeowVideoClip* AppendVideoClip(MeowTracingContext*, std::string video_path);
+    MeowVideoClip* AppendVideoClip(std::string video_path);
 
     /**
      * @brief 在某个位置插入视频片段
@@ -30,26 +30,24 @@ struct MeowEditorLayer {
      * @param video_path
      * @return MeowVideoClip*
      */
-    MeowVideoClip* InsertVideoClip(MeowTracingContext*, int32_t index, std::string video_path);
+    MeowVideoClip* InsertVideoClip(int32_t index, std::string video_path);
 
     /**
      * @brief 对某两个片段之间应用转场效果，index为前一个片段的索引
      *
      * @param index
      * @param transition
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool ApplyTransition(MeowTracingContext*, int32_t index, TransitionInfo transition);
+    MeowStatusCode ApplyTransition(int32_t index, TransitionInfo transition);
 
     /**
      * @brief 取消转场效果
      *
      * @param index
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool CancelTransition(MeowTracingContext*, int32_t index);
+    MeowStatusCode CancelTransition(int32_t index);
 
     // 定格
 

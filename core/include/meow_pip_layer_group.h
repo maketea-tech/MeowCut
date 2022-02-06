@@ -13,16 +13,15 @@ struct MeowPipLayerGroup {
      *
      * @return MeowPipLayer*
      */
-    MeowPipLayer* AddPipLayer(MeowTracingContext*);
+    MeowPipLayer* AddPipLayer();
 
     /**
      * @brief 删除画中画图层
      *
      * @param layer
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool DelPipLayer(MeowTracingContext*, MeowPipLayer* layer);
+    MeowStatusCode DelPipLayer(MeowPipLayer* layer);
 
     struct MeowPipLayerGroupImpl;
     MeowPipLayerGroupImpl* impl;

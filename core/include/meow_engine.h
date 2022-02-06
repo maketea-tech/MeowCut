@@ -22,59 +22,58 @@ struct MeowEngine {
     /**
      * @brief 整个Engine作用前首先调用此接口进行配置，然后才能得到相应的图层
      *
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool Configure(MeowTracingContext*, MeowVideoConfig video_config, MeowAudioConfig audio_config);
+    MeowStatusCode Configure(MeowVideoConfig video_config, MeowAudioConfig audio_config);
 
     /**
      * @brief 获取画布图层
      *
      * @return MeowCanvasLayer*
      */
-    MeowCanvasLayer* GetCanvasLayer(MeowTracingContext*);
+    MeowCanvasLayer* GetCanvasLayer();
 
     /**
      * @brief 获取编辑图层
      *
      * @return MeowEditorLayer*
      */
-    MeowEditorLayer* GetEditorLayer(MeowTracingContext*);
+    MeowEditorLayer* GetEditorLayer();
 
     /**
      * @brief 获取音频图层组
      *
      * @return MeowAudioLayerGroup*
      */
-    MeowAudioLayerGroup* GetAudioLayerGroup(MeowTracingContext*);
+    MeowAudioLayerGroup* GetAudioLayerGroup();
 
     /**
      * @brief 获取画中画图层组
      *
      * @return MeowPipLayerGroup*
      */
-    MeowPipLayerGroup* GetPipLayerGroup(MeowTracingContext*);
+    MeowPipLayerGroup* GetPipLayerGroup();
 
     /**
      * @brief 获取特效图层组
      *
      * @return MeowEffectLayerGroup*
      */
-    MeowEffectLayerGroup* GetEffectLayerGroup(MeowTracingContext*);
+    MeowEffectLayerGroup* GetEffectLayerGroup();
 
     /**
      * @brief 获取Unit工厂，具体见MeowUnitFactory
      *
      * @return MeowUnitFactory*
      */
-    MeowUnitFactory* GetUnitFactory(MeowTracingContext*);
+    MeowUnitFactory* GetUnitFactory();
 
     /**
      * @brief 获取Engine的控制器
      *
      * @return MeowEngineController*
      */
-    MeowEngineController* GetController(MeowTracingContext*);
+    MeowEngineController* GetController();
 
     struct MeowEngineImpl;
     MeowEngineImpl* impl;

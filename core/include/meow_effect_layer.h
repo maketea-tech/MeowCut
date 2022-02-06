@@ -13,36 +13,33 @@ struct MeowEffectLayer {
      *
      * @param effect
      * @param in_point
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool UpdateSticker(MeowTracingContext*, MeowStickerEffect* effect, int64_t in_point);
+    MeowStatusCode UpdateSticker(MeowStickerEffect* effect, int64_t in_point);
 
     /**
      * @brief 绑定贴纸
      *
      * @param effect
      * @param in_point
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool BindSticker(MeowTracingContext*, MeowStickerEffect* effect, int64_t in_point);
+    MeowStatusCode BindSticker(MeowStickerEffect* effect, int64_t in_point);
 
     /**
      * @brief 解绑贴纸
      *
      * @param effect
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool UnBindSticker(MeowTracingContext*, MeowStickerEffect* effect);
+    MeowStatusCode UnBindSticker(MeowStickerEffect* effect);
 
     /**
      * @brief 获取当前layer已经绑定的贴纸
      *
      * @return std::vector<MeowStickerEffect*>
      */
-    std::vector<MeowStickerEffect*> GetBindedSticker(MeowTracingContext*);
+    std::vector<MeowStickerEffect*> GetBindedSticker();
 
     ///< 字幕
 
@@ -51,36 +48,33 @@ struct MeowEffectLayer {
      *
      * @param effect
      * @param in_point
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool UpdateCaption(MeowTracingContext*, MeowCaptionEffect* effect, int64_t in_point);
+    MeowStatusCode UpdateCaption(MeowCaptionEffect* effect, int64_t in_point);
 
     /**
      * @brief 绑定字幕
      *
      * @param effect
      * @param in_point
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool BindCaption(MeowTracingContext*, MeowCaptionEffect* effect, int64_t in_point);
+    MeowStatusCode BindCaption(MeowCaptionEffect* effect, int64_t in_point);
 
     /**
      * @brief 解绑字幕
      *
      * @param effect
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool UnBindCaption(MeowTracingContext*, MeowCaptionEffect* effect);
+    MeowStatusCode UnBindCaption(MeowCaptionEffect* effect);
 
     /**
      * @brief 获取当前layer已经绑定的字幕
      *
      * @return std::vector<MeowCaptionEffect*>
      */
-    std::vector<MeowCaptionEffect*> GetBindedCaption(MeowTracingContext*);
+    std::vector<MeowCaptionEffect*> GetBindedCaption();
 
     ///< other
 
@@ -89,18 +83,16 @@ struct MeowEffectLayer {
      *
      * @param in_point
      * @param out_point
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool IsAllowedBind(MeowTracingContext*, int64_t in_point, int64_t out_point);
+    MeowStatusCode IsAllowedBind(int64_t in_point, int64_t out_point);
 
     /**
      * @brief 更新layer中所有effect的in_point和out_point
      *
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool Refresh(MeowTracingContext*);
+    MeowStatusCode Refresh();
 
     struct MeowEffectLayerImpl;
     MeowEffectLayerImpl* impl;

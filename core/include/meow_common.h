@@ -1,6 +1,9 @@
 #pragma once
 
 #include <cstdint>
+#include <string>
+
+#include "meow_status_code.h"
 
 namespace Meow {
 

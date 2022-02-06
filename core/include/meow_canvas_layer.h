@@ -14,37 +14,33 @@ struct MeowCanvasLayer {
      *
      * @param numerator
      * @param denominator
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool SetCanvasRatio(MeowTracingContext*, int32_t numerator, int32_t denominator);
+    MeowStatusCode SetCanvasRatio(int32_t numerator, int32_t denominator);
 
     /**
      * @brief 设置背景颜色
      *
      * @param color
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool SetBackGroundColor(MeowTracingContext*, MeowColor color);
+    MeowStatusCode SetBackGroundColor(MeowColor color);
 
     /**
      * @brief 设置背景图片
      *
      * @param image_path
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool SetBackGroundImage(MeowTracingContext*, std::string image_path);
+    MeowStatusCode SetBackGroundImage(std::string image_path);
 
     /**
      * @brief 设置背景模糊强度
      *
      * @param intensity
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool SetBackGroundBlur(MeowTracingContext*, float intensity);
+    MeowStatusCode SetBackGroundBlur(float intensity);
 
     struct MeowCanvasLayerImpl;
     MeowCanvasLayerImpl* impl;

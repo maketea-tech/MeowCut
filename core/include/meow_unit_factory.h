@@ -14,16 +14,15 @@ struct MeowUnitFactory {
      * @param path
      * @return MeowAudioClip*
      */
-    MeowAudioClip* AddAudioClip(MeowTracingContext*, std::string path);
+    MeowAudioClip* AddAudioClip(std::string path);
 
     /**
      * @brief 删除某个音频片段
      *
      * @param audio_clip
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool DelAudioClip(MeowTracingContext*, MeowAudioClip* audio_clip);
+    MeowStatusCode DelAudioClip(MeowAudioClip* audio_clip);
 
     /**
      * @brief 添加一个视频片段
@@ -31,48 +30,45 @@ struct MeowUnitFactory {
      * @param path
      * @return MeowVideoClip*
      */
-    MeowVideoClip* AddVideoClip(MeowTracingContext*, std::string path);
+    MeowVideoClip* AddVideoClip(std::string path);
 
     /**
      * @brief 删除某个视频片段
      *
      * @param video_clip
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool DelVideoClip(MeowTracingContext*, MeowVideoClip* video_clip);
+    MeowStatusCode DelVideoClip(MeowVideoClip* video_clip);
 
     /**
      * @brief 添加一个贴纸特效实例
      *
      * @return MeowStickerEffect*
      */
-    MeowStickerEffect* AddStickerEffect(MeowTracingContext*);
+    MeowStickerEffect* AddStickerEffect();
 
     /**
      * @brief 删除贴纸实例
      *
      * @param sticker
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool DelStickerEffect(MeowTracingContext*, MeowStickerEffect* sticker);
+    MeowStatusCode DelStickerEffect(MeowStickerEffect* sticker);
 
     /**
      * @brief 添加一个字幕特效实例
      *
      * @return MeowCaptionEffect*
      */
-    MeowCaptionEffect* AddCaptionEffect(MeowTracingContext*);
+    MeowCaptionEffect* AddCaptionEffect();
 
     /**
      * @brief 删除字幕特效实例
      *
      * @param caption
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool DelCaptionEffect(MeowTracingContext*, MeowCaptionEffect* caption);
+    MeowStatusCode DelCaptionEffect(MeowCaptionEffect* caption);
 
     struct MeowUnitFactoryImpl;
     MeowUnitFactoryImpl* impl;

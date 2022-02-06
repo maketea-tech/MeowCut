@@ -12,10 +12,9 @@ struct MeowStickerEffect {
      * @brief 设置贴纸路径
      *
      * @param sticker_path
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool SetStickerPath(MeowTracingContext*, std::string sticker_path);
+    MeowStatusCode SetStickerPath(std::string sticker_path);
 
     ///< **************
     ///< 移动的能力
@@ -25,10 +24,9 @@ struct MeowStickerEffect {
      * @brief 设置具体位置
      *
      * @param position
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool SetPosition(MeowTracingContext*, MeowPoint position);
+    MeowStatusCode SetPosition(MeowPoint position);
 
     /**
      * @brief 设置缩放比例
@@ -36,10 +34,9 @@ struct MeowStickerEffect {
      * @param scale_x
      * @param scale_y
      * @param scale_z
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool SetScale(MeowTracingContext*, float scale_x, float scale_y, float scale_z);
+    MeowStatusCode SetScale(float scale_x, float scale_y, float scale_z);
 
     /**
      * @brief 设置旋转信息
@@ -47,10 +44,9 @@ struct MeowStickerEffect {
      * @param rotation_x 0-360
      * @param rotation_y
      * @param rotation_z
-     * @return true
-     * @return false
+     * @return MeowStatusCode
      */
-    bool SetRotation(MeowTracingContext*, float rotation_x, float rotation_y, float rotation_z);
+    MeowStatusCode SetRotation(float rotation_x, float rotation_y, float rotation_z);
 
     struct MeowStickerEffectImpl;
     MeowStickerEffectImpl* impl;
