@@ -3,3 +3,4 @@ bin/
 Intermediate/
 lib/
 build/
+CMakeSettings.json
