@@ -1,7 +1,14 @@
+[toc]
 # MeowCut
 
 ## build
-根目录、`app`目录和`core`目录下均包含`CMakeLists.txt`文件，但`app`目录和`core`目录下的不建议使用（也不能使用），建议编译方式（在根目录下）为：
+### `Visual Studio`
+1. `Visual Studio`打开后，`file`->`open`->`cmake...`，选择项目根目录下`CMakelists.txt`文件
+2. `CMakelists.txt`中有部分注释专门给`Visual Studio`使用，根据需要进行设置即可（必须设置`Qt_Path`）
+
+
+### `cmake+make`
+编译方式（在根目录下）为：
 1. `mkdir build && cd build`
 2. 根据需要使用下面的`cmake`参数
 ```

@@ -2,6 +2,15 @@ cmake_minimum_required(VERSION 3.5)
 
 project(4build)
 
+# 手动设置参数，visual studio使用
+# set(Qt_Path "D:\\Qt\\5.15.2\\msvc2019_64\\lib\\cmake\\Qt5")
+# set(SOFTWARE_TYPE "app")
+# set(DEMO_TYPE "avcodec")
+# set(CMAKE_BUILD_TYPE "debug")
+# set(SOFTWARE_VERSION "1.0")
+# set(CXX_STANDARD 17)
+# set(INSTALL_PREFIX "")
+
 # 设置使用ccache
 find_program(CCACHE_PROGRAM ccache)
 if (CCACHE_PROGRAM)
@@ -34,18 +43,30 @@ endif()
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 编译选项
-if (NOT CMAKE_BUILD_TYPE)
+if (NOT CMAKE_BUILD_TYPE)    # 没有指定就使用debug模式
     message("CMAKE_BUILD_TYPE not set, default is debug mode")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+    if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" 
+            OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+    else()      # MSVC下-g不能用
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+    endif()
     add_definitions(-DDEBUG)
 else()
     string(TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
     if(${BUILD_TYPE} STREQUAL "release")
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
+    elseif(${BUILD_TYPE} STREQUAL "relwithdebinfo")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
     elseif(${BUILD_TYPE} STREQUAL "debug")
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")    # -g
+        if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" 
+                OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+        else()      # MSVC下-g不能用
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+        endif()
         add_definitions(-DDEBUG)                        # 增加debug宏，开启源码中的DEBUG能力
-    else()          # 没有指定就使用debug模式
+    else()
         message(FATAL_ERROR "CMAKE_BUILD_TYPE(${CMAKE_BUILD_TYPE}) not supported")
     endif()
 endif()

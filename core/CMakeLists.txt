@@ -54,8 +54,11 @@ else()
 
         # video render
     )
-
-    add_library(${PROJECT_NAME} SHARED ${SRC_FILES})
+    if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+        add_library(${PROJECT_NAME} STATIC ${SRC_FILES})
+    else()
+        add_library(${PROJECT_NAME} SHARED ${SRC_FILES})
+    endif()
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
 
     # 拷贝部署需要的头文件???
