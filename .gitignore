@@ -4,3 +4,4 @@ Intermediate/
 lib/
 build/
 CMakeSettings.json
+.vscode/
