@@ -50,9 +50,6 @@ struct MeowEditorLayer {
   MeowStatusCode CancelTransition(int32_t index);
 
   // 定格
-
-  struct MeowEditorLayerImpl;
-  MeowEditorLayerImpl* impl;
 };
 
 }  // namespace Meow

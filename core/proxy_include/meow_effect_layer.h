@@ -93,9 +93,6 @@ struct MeowEffectLayer {
    * @return MeowStatusCode
    */
   MeowStatusCode Refresh();
-
-  struct MeowEffectLayerImpl;
-  MeowEffectLayerImpl* impl;
 };
 
 }  // namespace Meow

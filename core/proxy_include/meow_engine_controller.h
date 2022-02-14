@@ -136,9 +136,6 @@ struct MeowEngineController {
    * @return MeowStatusCode
    */
   MeowStatusCode StopExport();
-
-  struct MeowEngineControllerImpl;
-  MeowEngineControllerImpl* impl;
 };
 
 }  // namespace Meow

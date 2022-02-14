@@ -1,15 +1,23 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(4build)
+project(MeowCutBuild)
 
 # 手动设置参数，visual studio使用
-# set(Qt_Path "D:\\Qt\\5.15.2\\msvc2019_64\\lib\\cmake\\Qt5")
-# set(SOFTWARE_TYPE "app")
-# set(DEMO_TYPE "avcodec")
-# set(CMAKE_BUILD_TYPE "debug")
-# set(SOFTWARE_VERSION "1.0")
-# set(CXX_STANDARD 17)
-# set(INSTALL_PREFIX "")
+set(Qt_Path "D:\\install\\qt\\5.14.0\\msvc2017_64\\lib\\cmake\\Qt5")
+set(SOFTWARE_TYPE "demo")
+set(DEMO_TYPE "avcodec")
+set(CMAKE_BUILD_TYPE "debug")
+set(SOFTWARE_VERSION "1.0")
+set(INSTALL_PREFIX "")
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS ON)
+
+set(CMAKE_C_EXTENSIONS ON)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+
 
 # 设置使用ccache
 find_program(CCACHE_PROGRAM ccache)
@@ -17,6 +25,9 @@ if (CCACHE_PROGRAM)
     set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
     set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK "${CCACHE_PROGRAM}")
 endif()
+
+message("message: cmake current binary dir is ${CMAKE_CURRENT_BINARY_DIR}")
+message("message: cmake system name is ${CMAKE_SYSTEM_NAME}")
 
 # 安装路径
 if (NOT INSTALL_PREFIX)
@@ -27,20 +38,12 @@ else()
     set(INSTALL_PREFIX "${INSTALL_PREFIX}/bin/${CMAKE_SYSTEM_NAME}")
 endif()
 
+message("message: cmake install prefix is ${INSTALL_PREFIX}")
+
 # 软件版本
 if(NOT DEFINED SOFTWARE_VERSION)
     set(SOFTWARE_VERSION "0.1")
 endif()
-
-# 指定编译器标准
-if(NOT DEFINED CXX_STANDARD)
-    set(CMAKE_CXX_STANDARD 17)
-elseif (CXX_STANDARD EQUAL 11 OR CXX_STANDARD EQUAL 14 OR CXX_STANDARD EQUAL 17)
-    set(CMAKE_CXX_STANDARD ${CXX_STANDARD})
-else()
-    message(FATAL_ERROR "CXX_STANDARD(${CXX_STANDARD}) not supported")
-endif()
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 编译选项
 if (NOT CMAKE_BUILD_TYPE)    # 没有指定就使用debug模式
@@ -102,6 +105,16 @@ include_directories("${CORE_PATH}/include")
 set(CORE_OUTPUT "${INSTALL_PREFIX}")
 set(CORE_TARGET "${APP_TARGET}Core")
 
+find_package(OpenGL REQUIRED)
+
+if (OPENGL_FOUND)
+    message("opengl found")
+    message("include dir: ${OPENGL_INCLUDE_DIR}")
+    message("link libraries: ${OPENGL_gl_LIBRARY}")
+else (OPENGL_FOUND)
+    message("opengl not found")
+endif()
+
 if (NOT DEFINED SOFTWARE_TYPE)
     add_subdirectory("${CORE_PATH}")
     add_subdirectory("${APP_PATH}")
@@ -122,10 +135,6 @@ else()
                 add_definitions(-DDEMO_AUDIO_EFFECT)
             elseif("${_DEMO_TYPE_}" STREQUAL "avcodec")
                 add_definitions(-DDEMO_AVCODEC)
-            elseif("${_DEMO_TYPE_}" STREQUAL "avsync")
-                add_definitions(-DDEMO_AVSYNC)
-            elseif("${_DEMO_TYPE_}" STREQUAL "image_filter")
-                add_definitions(-DDEMO_IMAGE_FILTER)
             elseif("${_DEMO_TYPE_}" STREQUAL "meowcut_core")
                 add_definitions(-DDEMO_MEOWCUT_CORE)
             elseif("${_DEMO_TYPE_}" STREQUAL "video_render")

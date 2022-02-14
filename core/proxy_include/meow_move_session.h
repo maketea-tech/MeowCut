@@ -37,9 +37,6 @@ struct MeowMoveSession {
    * @return MeowStatusCode
    */
   MeowStatusCode SetRotation(float rotation_x, float rotation_y, float rotation_z);
-
-  struct MeowMoveSessionImpl;
-  MeowMoveSessionImpl* impl;
 };
 
 }  // namespace Meow

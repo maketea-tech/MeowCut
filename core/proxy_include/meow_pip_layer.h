@@ -53,9 +53,6 @@ struct MeowPipLayer {
    * @return MeowStatusCode
    */
   MeowStatusCode Refresh();
-
-  struct MeowPipLayerImpl;
-  MeowPipLayerImpl* impl;
 };
 
 }  // namespace Meow

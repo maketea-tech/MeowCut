@@ -22,9 +22,6 @@ struct MeowAudioLayerGroup {
    * @return MeowStatusCode
    */
   MeowStatusCode DelAudioLayer(MeowAudioLayer* layer);
-
-  struct MeowAudioLayerGroupImpl;
-  MeowAudioLayerGroupImpl* impl;
 };
 
 }  // namespace Meow

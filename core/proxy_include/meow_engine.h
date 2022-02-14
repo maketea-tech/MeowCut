@@ -74,9 +74,6 @@ struct MeowEngine {
    * @return MeowEngineController*
    */
   MeowEngineController* GetController();
-
-  struct MeowEngineImpl;
-  MeowEngineImpl* impl;
 };
 
 }  // namespace Meow

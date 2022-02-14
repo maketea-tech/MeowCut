@@ -55,9 +55,6 @@ struct MeowAudioLayer {
    * @return MeowStatusCode
    */
   MeowStatusCode Refresh();
-
-  struct MeowAudioLayerImpl;
-  MeowAudioLayerImpl* impl;
 };
 
 }  // namespace Meow

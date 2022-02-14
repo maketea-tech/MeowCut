@@ -22,9 +22,6 @@ struct MeowEffectLayerGroup {
    * @return MeowStatusCode
    */
   MeowStatusCode DelEffectLayer(MeowEffectLayer* layer);
-
-  struct MeowEffectLayerGroupImpl;
-  MeowEffectLayerGroupImpl* impl;
 };
 
 }  // namespace Meow

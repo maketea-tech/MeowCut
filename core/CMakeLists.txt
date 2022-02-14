@@ -1,5 +1,5 @@
 if (_DEMO_TYPE_)
-    project(${CORE_TARGET} VERSION ${SOFTWARE_VERSION} LANGUAGES CXX)
+    project(${_DEMO_TYPE_} VERSION ${SOFTWARE_VERSION} LANGUAGES CXX)
 
     find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
@@ -9,24 +9,19 @@ if (_DEMO_TYPE_)
 
     set(EXECUTABLE_OUTPUT_PATH "${CORE_OUTPUT}")
 
-    # 设置src下demo的ui文件
-    set(UI_FILES src/${_DEMO_TYPE_}/demo/${_DEMO_TYPE_}.ui)
+    add_executable(${PROJECT_NAME})
 
-    # 设置src下demo的源文件
-    set(SRC_FILES
-        src/main.cpp
-        src/${_DEMO_TYPE_}/${_DEMO_TYPE_}.cpp
-        src/${_DEMO_TYPE_}/demo/${_DEMO_TYPE_}.cpp
-    )
+    if ("${_DEMO_TYPE_}" STREQUAL "audio_effect")
+    elseif("${_DEMO_TYPE_}" STREQUAL "avcodec")
+        add_subdirectory(src/avcodec)
+        add_subdirectory(avcodec_demo)
+    elseif("${_DEMO_TYPE_}" STREQUAL "meowcut_core")
+    elseif("${_DEMO_TYPE_}" STREQUAL "video_render")
+    else()
+        message(FATAL_ERROR "DEMO_TYPE(${DEMO_TYPE}) not supported")
+    endif()
 
-    set(PROJECT_SOURCES
-            ${SRC_FILES}
-            ${UI_FILES}
-    )
-
-    add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
-
-    target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets ${OPENGL_gl_LIBRARY})
 
 else()
     project(${CORE_TARGET} VERSION ${SOFTWARE_VERSION} LANGUAGES CXX)
@@ -36,30 +31,15 @@ else()
     # 设置头文件和库文件生成目录
     set(LIBRARY_OUTPUT_PATH "${CORE_OUTPUT}")
 
-    # 逐一设置src下的目录中的源文件
-    set(SRC_FILES
-        # audio effect
-
-        # avcodec
-        src/avcodec/avcodec.cpp
-
-        # avcodec widget, just for test ???, not add now
-
-        # avsync
-
-        # image_filter
-
-        # meowcutcore
-        src/meowcut_core/meowcut_core.cpp
-
-        # video render
-    )
     if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-        add_library(${PROJECT_NAME} STATIC ${SRC_FILES})
+        add_library(${PROJECT_NAME} STATIC ${MEOW_SRC_FILES})
     else()
-        add_library(${PROJECT_NAME} SHARED ${SRC_FILES})
+        add_library(${PROJECT_NAME} SHARED ${MEOW_SRC_FILES})
     endif()
-    target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
+
+    add_subdirectory(src)
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets ${OPENGL_gl_LIBRARY})
 
     # 拷贝部署需要的头文件???
     # file(COPY include/*.h DESTINATION ${LIBRARY_OUTPUT_PATH}/include FOLLOW_SYMLINK_CHAIN)
