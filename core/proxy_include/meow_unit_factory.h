@@ -69,9 +69,6 @@ struct MeowUnitFactory {
    * @return MeowStatusCode
    */
   MeowStatusCode DelCaptionEffect(MeowCaptionEffect* caption);
-
-  struct MeowUnitFactoryImpl;
-  MeowUnitFactoryImpl* impl;
 };
 
 }  // namespace Meow

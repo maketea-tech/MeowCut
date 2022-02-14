@@ -167,9 +167,6 @@ struct MeowVideoClip {
    * @return int64_t
    */
   int64_t GetStreamDuration();
-
-  struct MeowVideoClipImpl;
-  MeowVideoClipImpl* impl;
 };
 
 }  // namespace Meow

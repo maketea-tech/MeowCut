@@ -1,0 +1,6 @@
+add_subdirectory(common)
+add_subdirectory(gl_manager)
+add_subdirectory(avcodec)
+add_subdirectory(audio_effect)
+add_subdirectory(video_render)
+add_subdirectory(meowcut_core)

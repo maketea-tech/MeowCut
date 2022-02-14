@@ -47,9 +47,6 @@ struct MeowStickerEffect {
    * @return MeowStatusCode
    */
   MeowStatusCode SetRotation(float rotation_x, float rotation_y, float rotation_z);
-
-  struct MeowStickerEffectImpl;
-  MeowStickerEffectImpl* impl;
 };
 
 

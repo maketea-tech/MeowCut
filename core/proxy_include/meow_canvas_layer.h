@@ -41,9 +41,6 @@ struct MeowCanvasLayer {
    * @return MeowStatusCode
    */
   MeowStatusCode SetBackGroundBlur(float intensity);
-
-  struct MeowCanvasLayerImpl;
-  MeowCanvasLayerImpl* impl;
 };
 
 }  // namespace Meow

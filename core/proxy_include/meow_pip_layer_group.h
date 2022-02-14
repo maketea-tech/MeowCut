@@ -22,9 +22,6 @@ struct MeowPipLayerGroup {
    * @return MeowStatusCode
    */
   MeowStatusCode DelPipLayer(MeowPipLayer* layer);
-
-  struct MeowPipLayerGroupImpl;
-  MeowPipLayerGroupImpl* impl;
 };
 
 }  // namespace Meow
